@@ -1,7 +1,14 @@
 import React from 'react';
 
 const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
-  const { name, category, description, difficulty, rating, image, badge } = tech;
+  // Safe extraction with flexible fallbacks for any key variation in your data file
+  const name = tech?.name || tech?.title || 'Technology';
+  const category = tech?.category || tech?.type || 'General';
+  const description = tech?.description || tech?.desc || 'A powerful technology for building modern applications.';
+  const difficulty = tech?.difficulty || tech?.level || tech?.difficultyLevel || 'Beginner-Friendly';
+  const rating = tech?.rating || tech?.score || tech?.stars || '4.9';
+  const image = tech?.image || tech?.icon || tech?.logo || '';
+  const badge = tech?.badge || tech?.tag || '';
 
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
