@@ -1,14 +1,7 @@
 import React from 'react';
 
 const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
-  // Safe extraction with default fallbacks so nothing breaks if a property is missing
-  const name = tech?.name || tech?.title || 'Technology';
-  const category = tech?.category || tech?.type || 'General';
-  const description = tech?.description || tech?.desc || 'A powerful technology for building modern applications.';
-  const difficulty = tech?.difficulty || tech?.level || 'Beginner-Friendly';
-  const rating = tech?.rating || tech?.score || '4.9';
-  const image = tech?.image || tech?.icon || tech?.logo || '';
-  const badge = tech?.badge || tech?.tag || '';
+  const { name, category, description, difficulty, rating, image, badge } = tech;
 
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
@@ -19,7 +12,7 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
             {image ? (
               <img src={image} alt={name} className="w-full h-full object-contain" />
             ) : (
-              <span className="text-xl font-bold text-gray-700">{name.charAt(0)}</span>
+              <span className="text-xl font-bold text-gray-700">{name?.charAt(0)}</span>
             )}
           </div>
           {badge && (
@@ -31,7 +24,6 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
               badge.toLowerCase() === 'cache' ? 'bg-rose-50 text-rose-600 border border-rose-100' :
               badge.toLowerCase() === 'fast' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
               badge.toLowerCase() === 'robust' ? 'bg-teal-50 text-teal-600 border border-teal-100' :
-              badge.toLowerCase() === 'standard' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
               'bg-gray-50 text-gray-600 border border-gray-100'
             }`}>
               {badge}
