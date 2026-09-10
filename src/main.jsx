@@ -75,7 +75,7 @@ function MainApp() {
       id: 8,
       name: "JavaScript",
       category: "Language",
-      badge: "Mendatory",
+      badge: "Mandatory",
       description: "The versatile, ubiquitous scripting language powering dynamic behavior across the web.",
       difficulty: "Beginner-Friendly",
       image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"
@@ -152,7 +152,11 @@ function MainApp() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-6">
-              <YourStack selectedStack={selectedStack} onRemove={handleRemoveTech} />
+              <YourStack 
+                stack={selectedStack} 
+                onRemove={handleRemoveTech} 
+                onRemoveAll={() => setSelectedStack([])} 
+              />
             </div>
           </div>
         </div>
