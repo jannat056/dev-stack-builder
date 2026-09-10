@@ -1,38 +1,60 @@
 import React from 'react';
 
-const TechnologyCard = ({ tech, onAdd, isAdded }) => {
-  const { name, image, category, description, difficulty } = tech;
+const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
+  const { name, category, description, difficulty, rating, image, badge } = tech;
 
   return (
-    <div className="card bg-base-100 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
-      <figure className="px-6 pt-6">
-        <img 
-          src={image} 
-          alt={name} 
-          className="w-16 h-16 object-contain"
-          onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/64?text=Tech';
-          }}
-        />
-      </figure>
-      <div className="card-body items-center text-center p-6">
-        <span className="badge badge-outline text-xs uppercase tracking-wider mb-2">{category}</span>
-        <h2 className="card-title text-lg font-bold">{name}</h2>
-        <p className="text-gray-500 text-sm line-clamp-2 my-2">{description}</p>
-        <div className="text-xs font-semibold text-gray-400 mb-4">Difficulty: {difficulty}</div>
-        <div className="card-actions w-full">
-          <button
-            onClick={() => onAdd(tech)}
-            disabled={isAdded}
-            className={`btn w-full btn-sm rounded-full ${
-              isAdded 
-                ? 'btn-disabled bg-gray-200 text-gray-400 border-none' 
-                : 'bg-gradient-to-r from-orange-500 to-pink-500 text-white border-none'
-            }`}
-          >
-            {isAdded ? 'Added to Stack' : 'Add to Stack'}
-          </button>
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+      <div>
+        {/* Top Header: Image/Icon and Badge */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100">
+            {image ? (
+              <img src={image} alt={name} className="w-full h-full object-contain" />
+            ) : (
+              <span className="text-xl font-bold text-gray-700">{name?.charAt(0)}</span>
+            )}
+          </div>
+          {badge && (
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+              {badge}
+            </span>
+          )}
         </div>
+
+        {/* Title */}
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{name}</h3>
+
+        {/* Description */}
+        <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed">
+          {description}
+        </p>
+      </div>
+
+      <div>
+        {/* Meta Info: Category, Difficulty, Rating */}
+        <div className="flex items-center justify-between text-xs text-gray-500 mb-5 pt-4 border-t border-gray-50">
+          <span className="font-medium bg-gray-100 px-2.5 py-1 rounded-md text-gray-700">{category}</span>
+          <span className="font-medium">{difficulty}</span>
+          {rating && (
+            <span className="flex items-center gap-1 font-semibold text-amber-500">
+              ⭐ {rating}
+            </span>
+          )}
+        </div>
+
+        {/* Action Button */}
+        <button
+          onClick={() => onAddStock && onAddStock(tech)}
+          disabled={isAdded}
+          className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all shadow-sm ${
+            isAdded
+              ? 'bg-emerald-500 text-white cursor-not-allowed opacity-90'
+              : 'bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-black hover:to-gray-900 active:scale-[0.98]'
+          }`}
+        >
+          {isAdded ? 'Added to Stack ✓' : 'Add to Stack'}
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
- import React from 'react';
+import React from 'react';
+import bannerImg from './assets/banner-stack.png';
 
 const Banner = () => {
   return (
@@ -29,7 +30,7 @@ const Banner = () => {
         {/* Right Image Area */}
         <div className="flex justify-center">
           <img 
-            src="assets/banner-stack.png" 
+            src={bannerImg} 
             alt="Development Stack Illustration" 
             className="w-full max-w-md h-auto object-contain drop-shadow-xl"
           />
