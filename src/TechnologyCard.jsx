@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
+const TechnologyCard = ({ tech, onAdd, isAdded }) => {
   const name = tech?.name || tech?.title || 'Technology';
   const category = tech?.category || tech?.type || 'General';
   const description =
@@ -9,7 +9,6 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
     'A powerful technology for building modern applications.';
   const difficulty = tech?.difficulty || tech?.level || 'Beginner-Friendly';
 
-  // Technology-wise rating
   const ratings = {
     react: '4.9',
     'react.js': '4.9',
@@ -38,14 +37,11 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
     tech?.score ||
     '4.9';
 
-  // Keep existing badge for all technologies,
-  // but JavaScript must show "Ubiquitous"
   const badge =
     normalizedName === 'javascript'
       ? 'Ubiquitous'
       : tech?.badge || tech?.tag || '';
 
-  // Dynamic image fallback resolver
   const getImageSrc = () => {
     if (tech?.image) return tech.image;
     if (tech?.icon) return tech.icon;
@@ -64,7 +60,6 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
       <div>
-        {/* Top Header: Image/Icon and Badge */}
         <div className="flex items-center justify-between mb-4">
           <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
             {imageSrc ? (
@@ -119,19 +114,16 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
           )}
         </div>
 
-        {/* Title */}
         <h3 className="text-xl font-bold text-gray-900 mb-2">
           {name}
         </h3>
 
-        {/* Description */}
         <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed min-h-[40px]">
           {description}
         </p>
       </div>
 
       <div>
-        {/* Meta Info */}
         <div className="flex items-center justify-between text-xs text-gray-500 mb-5 pt-4 border-t border-gray-50">
           <span className="font-medium bg-gray-100 px-2.5 py-1 rounded-md text-gray-700">
             {category}
@@ -150,7 +142,7 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
 
         {/* Action Button */}
         <button
-          onClick={() => onAddStock && onAddStock(tech)}
+          onClick={() => onAdd && onAdd(tech)}
           disabled={isAdded}
           className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all shadow-sm ${
             isAdded
