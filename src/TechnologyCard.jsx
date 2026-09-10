@@ -6,7 +6,14 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
   return (
     <div className="card bg-base-100 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
       <figure className="px-6 pt-6">
-        <img src={image} alt={name} className="w-16 h-16 object-contain" />
+        <img 
+          src={image} 
+          alt={name} 
+          className="w-16 h-16 object-contain"
+          onError={(e) => {
+            e.target.src = 'https://via.placeholder.com/64?text=Tech';
+          }}
+        />
       </figure>
       <div className="card-body items-center text-center p-6">
         <span className="badge badge-outline text-xs uppercase tracking-wider mb-2">{category}</span>

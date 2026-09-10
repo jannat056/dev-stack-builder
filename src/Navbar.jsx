@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
+import logo from './assets/logo-text.png'; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-base-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-20 items-center">
           
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <span className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold p-2 rounded-lg text-lg">DS</span>
-            <span className="text-xl font-bold tracking-tight">Dev Stack</span>
+          {/* Logo Section */}
+          <div className="flex items-center gap-3">
+            <img 
+              src={logo} 
+              alt="Dev Stack Logo" 
+              className="w-10 h-10 object-contain rounded-xl shadow-md"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                if (e.target.nextSibling) {
+                  e.target.nextSibling.style.display = 'flex';
+                }
+              }}
+            />
+            {/* Fallback Badge if image path fails */}
+            <div className="hidden items-center gap-2">
+              <span className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold p-2 rounded-xl text-lg shadow-md">DS</span>
+              <span className="text-xl font-bold tracking-tight text-gray-900">Dev Stack</span>
+            </div>
+            <span className="text-xl font-bold tracking-tight text-gray-900">Dev Stack</span>
           </div>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Nav Links (Center Aligned) */}
+          <div className="hidden md:flex items-center space-x-10">
             <a href="#home" className="text-gray-600 hover:text-black font-medium transition-colors">Home</a>
             <a href="#technologies" className="text-gray-600 hover:text-black font-medium transition-colors">Technologies</a>
             <a href="#projects" className="text-gray-600 hover:text-black font-medium transition-colors">Projects</a>
@@ -23,10 +39,12 @@ const Navbar = () => {
             <a href="#contact" className="text-gray-600 hover:text-black font-medium transition-colors">Contact</a>
           </div>
 
-          {/* Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="btn btn-ghost btn-sm font-semibold">Sign In</button>
-            <button className="btn bg-gradient-to-r from-orange-500 to-pink-500 text-white border-none btn-sm px-5 rounded-full">Sign Up</button>
+          {/* Action Buttons (Right Aligned) */}
+          <div className="hidden md:flex items-center space-x-6">
+            <button className="text-gray-600 hover:text-black font-semibold text-sm transition-colors">Sign In</button>
+            <button className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-medium px-6 py-2.5 rounded-full text-sm shadow-md hover:opacity-90 transition-opacity">
+              Sign Up
+            </button>
           </div>
 
           {/* Mobile Hamburger Menu Button */}
@@ -50,15 +68,17 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-base-100 border-b px-4 pt-2 pb-4 space-y-3">
+        <div className="md:hidden bg-white border-b border-gray-100 px-6 pt-4 pb-6 space-y-4 shadow-lg">
           <a href="#home" className="block text-gray-700 font-medium py-1">Home</a>
           <a href="#technologies" className="block text-gray-700 font-medium py-1">Technologies</a>
           <a href="#projects" className="block text-gray-700 font-medium py-1">Projects</a>
           <a href="#about" className="block text-gray-700 font-medium py-1">About</a>
           <a href="#contact" className="block text-gray-700 font-medium py-1">Contact</a>
-          <div className="pt-2 flex flex-col gap-2">
-            <button className="btn btn-outline btn-sm w-full">Sign In</button>
-            <button className="btn bg-gradient-to-r from-orange-500 to-pink-500 text-white border-none btn-sm w-full">Sign Up</button>
+          <div className="pt-4 flex flex-col gap-3 border-t border-gray-100">
+            <button className="text-center text-gray-700 font-semibold py-2">Sign In</button>
+            <button className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-medium py-2.5 rounded-full text-sm w-full shadow-md">
+              Sign Up
+            </button>
           </div>
         </div>
       )}

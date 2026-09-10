@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
+import Navbar from './Navbar.jsx';
 import Banner from './Banner.jsx';
 import TechnologyCard from './TechnologyCard.jsx';
 import YourStack from './YourStack.jsx';
+import Footer from './Footer.jsx';
 import './index.css';
 
 function MainApp() {
@@ -129,38 +131,42 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <Banner />
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-between">
+      <div>
+        <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 py-8">
+          <Banner />
 
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Explore the Technologies</h2>
-          <p className="text-sm text-slate-500 mt-1">Pick your technology per category to build your ideal stack.</p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {technologies.map((tech) => (
-              <TechnologyCard 
-                key={tech.id} 
-                tech={tech} 
-                onAdd={handleAddTech} 
-                isAdded={selectedStack.some((item) => item.id === tech.id)} 
-              />
-            ))}
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">Explore the Technologies</h2>
+            <p className="text-sm text-slate-500 mt-1">Pick your technology per category to build your ideal stack.</p>
           </div>
 
-          <div className="lg:col-span-1">
-            <div className="sticky top-6">
-              <YourStack 
-                stack={selectedStack} 
-                onRemove={handleRemoveTech} 
-                onRemoveAll={() => setSelectedStack([])} 
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {technologies.map((tech) => (
+                <TechnologyCard 
+                  key={tech.id} 
+                  tech={tech} 
+                  onAdd={handleAddTech} 
+                  isAdded={selectedStack.some((item) => item.id === tech.id)} 
+                />
+              ))}
+            </div>
+
+            <div className="lg:col-span-1">
+              <div className="sticky top-6">
+                <YourStack 
+                  stack={selectedStack} 
+                  onRemove={handleRemoveTech} 
+                  onRemoveAll={() => setSelectedStack([])} 
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
