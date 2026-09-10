@@ -1,27 +1,14 @@
 import React from 'react';
 
 const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
+  // Safe extraction with default fallbacks so nothing breaks if a property is missing
   const name = tech?.name || tech?.title || 'Technology';
   const category = tech?.category || tech?.type || 'General';
   const description = tech?.description || tech?.desc || 'A powerful technology for building modern applications.';
   const difficulty = tech?.difficulty || tech?.level || 'Beginner-Friendly';
   const rating = tech?.rating || tech?.score || '4.9';
+  const image = tech?.image || tech?.icon || tech?.logo || '';
   const badge = tech?.badge || tech?.tag || '';
-
-  // Dynamic image fallback resolver for Next.js and Svelte if direct path fails
-  const getImageSrc = () => {
-    if (tech?.image) return tech.image;
-    if (tech?.icon) return tech.icon;
-    if (tech?.logo) return tech.logo;
-    
-    // Automatic fallback based on tech name
-    const formattedName = name.toLowerCase().replace(/[\s.]+/g, '');
-    if (formattedName.includes('next')) return '/nextjs.png';
-    if (formattedName.includes('svelte')) return '/svelte.png';
-    return '';
-  };
-
-  const imageSrc = getImageSrc();
 
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
@@ -29,20 +16,11 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
         {/* Top Header: Image/Icon and Badge */}
         <div className="flex items-center justify-between mb-4">
           <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
-            {imageSrc ? (
-              <img 
-                src={imageSrc} 
-                alt={name} 
-                className="w-full h-full object-contain" 
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
-                }}
-              />
-            ) : null}
-            <span className="text-xl font-bold text-gray-700" style={{ display: imageSrc ? 'none' : 'block' }}>
-              {name?.charAt(0)}
-            </span>
+            {image ? (
+              <img src={image} alt={name} className="w-full h-full object-contain" />
+            ) : (
+              <span className="text-xl font-bold text-gray-700">{name.charAt(0)}</span>
+            )}
           </div>
           {badge && (
             <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
@@ -53,6 +31,7 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
               badge.toLowerCase() === 'cache' ? 'bg-rose-50 text-rose-600 border border-rose-100' :
               badge.toLowerCase() === 'fast' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
               badge.toLowerCase() === 'robust' ? 'bg-teal-50 text-teal-600 border border-teal-100' :
+              badge.toLowerCase() === 'standard' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
               badge.toLowerCase() === 'ubiquitous' ? 'bg-orange-50 text-orange-600 border border-orange-100' :
               'bg-gray-50 text-gray-600 border border-gray-100'
             }`}>
