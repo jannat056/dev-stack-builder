@@ -1,18 +1,25 @@
 import React from 'react';
 
 const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
-  const { name, category, description, difficulty, rating, image, badge } = tech;
+  // Safe extraction with default fallbacks so nothing breaks if a property is missing
+  const name = tech?.name || tech?.title || 'Technology';
+  const category = tech?.category || tech?.type || 'General';
+  const description = tech?.description || tech?.desc || 'A powerful technology for building modern applications.';
+  const difficulty = tech?.difficulty || tech?.level || 'Beginner-Friendly';
+  const rating = tech?.rating || tech?.score || '4.9';
+  const image = tech?.image || tech?.icon || tech?.logo || '';
+  const badge = tech?.badge || tech?.tag || '';
 
   return (
     <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
       <div>
         {/* Top Header: Image/Icon and Badge */}
         <div className="flex items-center justify-between mb-4">
-          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden">
+          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
             {image ? (
               <img src={image} alt={name} className="w-full h-full object-contain" />
             ) : (
-              <span className="text-xl font-bold text-gray-700">{name?.charAt(0)}</span>
+              <span className="text-xl font-bold text-gray-700">{name.charAt(0)}</span>
             )}
           </div>
           {badge && (
@@ -24,6 +31,7 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
               badge.toLowerCase() === 'cache' ? 'bg-rose-50 text-rose-600 border border-rose-100' :
               badge.toLowerCase() === 'fast' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
               badge.toLowerCase() === 'robust' ? 'bg-teal-50 text-teal-600 border border-teal-100' :
+              badge.toLowerCase() === 'standard' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
               'bg-gray-50 text-gray-600 border border-gray-100'
             }`}>
               {badge}
@@ -44,7 +52,7 @@ const TechnologyCard = ({ tech, onAddStock, isAdded }) => {
         {/* Meta Info: Category, Difficulty, Rating */}
         <div className="flex items-center justify-between text-xs text-gray-500 mb-5 pt-4 border-t border-gray-50">
           <span className="font-medium bg-gray-100 px-2.5 py-1 rounded-md text-gray-700">{category}</span>
-          <span className="font-medium">{difficulty}</span>
+          <span className="font-medium text-gray-600">{difficulty}</span>
           {rating && (
             <span className="flex items-center gap-1 font-semibold text-amber-500">
               ⭐ {rating}
