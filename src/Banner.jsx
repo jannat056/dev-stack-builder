@@ -1,7 +1,8 @@
 import React from 'react';
-import bannerImg from './assets/banner-stack.png';
 
 const Banner = () => {
+  const bannerSrc = `${import.meta.env.BASE_URL}banner-stack.png`;
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 lg:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -30,9 +31,12 @@ const Banner = () => {
         {/* Right Image Area */}
         <div className="flex justify-center">
           <img 
-            src={bannerImg} 
+            src={bannerSrc} 
             alt="Development Stack Illustration" 
             className="w-full max-w-md h-auto object-contain drop-shadow-xl"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
           />
         </div>
 
