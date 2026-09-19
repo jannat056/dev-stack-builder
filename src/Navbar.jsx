@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Correct path for assets inside public/assets/ folder
   const logoSrc = `${import.meta.env.BASE_URL}assets/logo-text.png`;
 
   return (
@@ -12,12 +10,14 @@ const Navbar = () => {
         <div className="flex justify-between h-20 items-center">
           
           {/* Brand Logo Section */}
-          <div className="flex items-center gap-3">
-            <img 
-              src={logoSrc} 
-              alt="Dev Stack Logo" 
-              className="h-8 md:h-10 w-auto object-contain"
-            />
+          <div className="flex items-center">
+            <a href="#home" className="flex items-center">
+              <img 
+                src={logoSrc} 
+                alt="Dev Stack Logo" 
+                className="h-10 md:h-12 w-auto object-contain"
+              />
+            </a>
           </div>
 
           {/* Desktop Navigation Links */}
