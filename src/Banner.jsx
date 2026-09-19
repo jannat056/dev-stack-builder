@@ -34,9 +34,8 @@ const Banner = () => {
             src={bannerSrc} 
             alt="Development Stack Illustration" 
             className="w-full max-w-md h-auto object-contain drop-shadow-xl"
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
+            onLoad={() => console.log("Banner image loaded successfully!")}
+            onError={() => console.error("Failed to load banner image from:", bannerSrc)}
           />
         </div>
 
