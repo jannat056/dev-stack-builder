@@ -61,7 +61,18 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
   const imageSrc = getImageSrc();
 
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-100 transition-all duration-300 flex flex-col justify-between h-full">
+    <div 
+      className={`relative bg-white rounded-2xl p-6 transition-all duration-500 flex flex-col justify-between h-full ${
+        isAdded
+          ? 'border-2 border-pink-400 shadow-[0_0_30px_rgba(236,72,153,0.35)] scale-[1.02]'
+          : 'border border-gray-100 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-100'
+      }`}
+    >
+      {/* Fairy Glow Magical Aura Effect */}
+      {isAdded && (
+        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 rounded-2xl blur-lg opacity-40 -z-10 animate-pulse"></div>
+      )}
+
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
@@ -147,13 +158,20 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
         <button
           onClick={() => onAdd && onAdd(tech)}
           disabled={isAdded}
-          className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all shadow-sm ${
+          className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center justify-center gap-2 ${
             isAdded
-              ? 'bg-emerald-500 text-white cursor-not-allowed opacity-90'
+              ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white cursor-not-allowed opacity-90 shadow-pink-200'
               : 'bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-black hover:to-gray-900 active:scale-[0.98]'
           }`}
         >
-          {isAdded ? 'Added to Stack ✓' : 'Add to Stack'}
+          {isAdded ? (
+            <>
+              <span>Added to Stack ✓</span>
+              <span className="animate-bounce">✨</span>
+            </>
+          ) : (
+            'Add to Stack'
+          )}
         </button>
       </div>
     </div>
