@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Banner = () => {
-  const bannerSrc = `${import.meta.env.BASE_URL}banner-stack.png`;
+  const bannerSrc = `${import.meta.env.BASE_URL}assets/banner-stack.png`;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 lg:py-16">
@@ -30,11 +30,10 @@ const Banner = () => {
 
         {/* Right Image Area */}
         <div className="flex justify-center">
-          <img src={bannerSrc}
+          <img 
+            src={bannerSrc} 
             alt="Development Stack Illustration" 
             className="w-full max-w-md h-auto object-contain drop-shadow-xl"
-            onLoad={() => console.log("Banner image loaded successfully!")}
-            onError={() => console.error("Failed to load banner image from:", bannerSrc)}
           />
         </div>
 
