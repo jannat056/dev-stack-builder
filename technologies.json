@@ -6,7 +6,7 @@
     "badge": "Popular",
     "description": "A declarative, component-based JavaScript library for building modern user interfaces.",
     "difficulty": "Beginner-Friendly",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"
+    "image": "react.png"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "badge": "Versatile",
     "description": "An approachable, performant, and versatile framework for building web user interfaces.",
     "difficulty": "Beginner-Friendly",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png"
+    "image": "vue.png"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "badge": "Fast",
     "description": "Cybernetically enhanced web apps with compile-time reactivity instead of virtual DOM overhead.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/svelte/svelte.png"
+    "image": "svelte.png"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "badge": "Modern",
     "description": "The React framework for the web—enabling hybrid static & server rendering.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nextjs/nextjs.png"
+    "image": "nextjs.png"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "badge": "Robust",
     "description": "Asynchronous event-driven JavaScript runtime built on Chrome's V8 engine.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"
+    "image": "nodejs.png"
   },
   {
     "id": 6,
@@ -51,7 +51,7 @@
     "badge": "Popular",
     "description": "A powerful, open source object-relational database system with proven reliability.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png"
+    "image": "postgresql.png"
   },
   {
     "id": 7,
@@ -60,7 +60,7 @@
     "badge": "Cache",
     "description": "In-memory data structure store used as a database, cache, and message broker.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/redis/redis.png"
+    "image": "redis.png"
   },
   {
     "id": 8,
@@ -69,7 +69,7 @@
     "badge": "Ubiquitous",
     "description": "The versatile, ubiquitous scripting language powering dynamic behavior across the web.",
     "difficulty": "Beginner-Friendly",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"
+    "image": "javascript.png"
   },
   {
     "id": 9,
@@ -78,7 +78,7 @@
     "badge": "Essential",
     "description": "A strongly typed programming language that builds on JavaScript for robust tooling.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png"
+    "image": "typescript.png"
   },
   {
     "id": 10,
@@ -87,7 +87,7 @@
     "badge": "Robust",
     "description": "A secure, object-oriented programming language designed for portability and scale.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png"
+    "image": "java.png"
   },
   {
     "id": 11,
@@ -96,7 +96,7 @@
     "badge": "Modern",
     "description": "A utility-first CSS framework packed with classes that can be composed to build any design.",
     "difficulty": "Beginner-Friendly",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tailwind/tailwind.png"
+    "image": "tailwind.png"
   },
   {
     "id": 12,
@@ -105,6 +105,6 @@
     "badge": "Popular",
     "description": "A platform for developers to build, share, and run applications with containers.",
     "difficulty": "Intermediate",
-    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png"
+    "image": "docker.png"
   }
 ]
