@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TechnologyCard = ({ tech, onAdd, isAdded }) => {
+  const [imgError, setImgError] = useState(false);
+
   const name = tech?.name || tech?.title || 'Technology';
   const category = tech?.category || tech?.type || 'General';
   const description =
@@ -9,6 +11,7 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
     'A powerful technology for building modern applications.';
   const difficulty = tech?.difficulty || tech?.level || 'Beginner-Friendly';
 
+  // Ratings Mapping
   const ratings = {
     react: '4.9',
     'react.js': '4.9',
@@ -30,18 +33,14 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
   };
 
   const normalizedName = name.toLowerCase().trim();
-
-  const rating =
-    ratings[normalizedName] ||
-    tech?.rating ||
-    tech?.score ||
-    '4.9';
-
+  const rating = ratings[normalizedName] || tech?.rating || tech?.score || '4.9';
+  
   const badge =
     normalizedName === 'javascript'
       ? 'Ubiquitous'
       : tech?.badge || tech?.tag || '';
 
+  // Image Source Handler
   const getImageSrc = () => {
     if (tech?.image) {
       if (tech.image.startsWith('http')) return tech.image;
@@ -51,7 +50,6 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
     if (tech?.logo) return tech.logo;
 
     const formattedName = name.toLowerCase().replace(/[\s.]+/g, '');
-
     if (formattedName.includes('next')) return `${import.meta.env.BASE_URL}nextjs.png`;
     if (formattedName.includes('svelte')) return `${import.meta.env.BASE_URL}svelte.png`;
 
@@ -60,12 +58,28 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
 
   const imageSrc = getImageSrc();
 
+  // Dynamic Badge Color Generator
+  const getBadgeStyles = (badgeText) => {
+    const text = badgeText?.toLowerCase() || '';
+    switch (text) {
+      case 'popular': return 'bg-sky-50 text-sky-600 border-sky-100';
+      case 'versatile': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
+      case 'essential': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+      case 'modern': return 'bg-cyan-50 text-cyan-600 border-cyan-100';
+      case 'cache': return 'bg-rose-50 text-rose-600 border-rose-100';
+      case 'fast': return 'bg-amber-50 text-amber-600 border-amber-100';
+      case 'robust': return 'bg-teal-50 text-teal-600 border-teal-100';
+      case 'ubiquitous': return 'bg-violet-50 text-violet-600 border-violet-100';
+      default: return 'bg-gray-50 text-gray-600 border-gray-200';
+    }
+  };
+
   return (
     <div 
       className={`relative bg-white rounded-2xl p-6 transition-all duration-500 flex flex-col justify-between h-full ${
         isAdded
           ? 'border-2 border-pink-400 shadow-[0_0_30px_rgba(236,72,153,0.35)] scale-[1.02]'
-          : 'border border-gray-100 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-100'
+          : 'border border-gray-100 hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-50/50'
       }`}
     >
       {/* Fairy Glow Magical Aura Effect */}
@@ -74,81 +88,48 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
       )}
 
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
-            {imageSrc ? (
+        <div className="flex items-start justify-between mb-5">
+          <div className="w-14 h-14 rounded-xl bg-gray-50/80 flex items-center justify-center p-2.5 border border-gray-100 shadow-sm shrink-0">
+            {imageSrc && !imgError ? (
               <img
                 src={imageSrc}
                 alt={name}
-                className="w-full h-full object-contain"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-
-                  if (e.target.nextSibling) {
-                    e.target.nextSibling.style.display = 'block';
-                  }
-                }}
+                className="w-full h-full object-contain drop-shadow-sm"
+                onError={() => setImgError(true)}
               />
-            ) : null}
-
-            <span
-              className="text-xl font-bold text-gray-700"
-              style={{
-                display: imageSrc ? 'none' : 'block',
-              }}
-            >
-              {name?.charAt(0)}
-            </span>
+            ) : (
+              <span className="text-2xl font-black text-gray-400 uppercase tracking-tighter">
+                {name?.charAt(0)}
+              </span>
+            )}
           </div>
 
           {badge && (
-            <span
-              className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                badge.toLowerCase() === 'popular'
-                  ? 'bg-sky-50 text-sky-600 border border-sky-100'
-                  : badge.toLowerCase() === 'versatile'
-                  ? 'bg-emerald-50 text-emerald-600 border border-emerald-100'
-                  : badge.toLowerCase() === 'essential'
-                  ? 'bg-indigo-50 text-indigo-600 border border-indigo-100'
-                  : badge.toLowerCase() === 'modern'
-                  ? 'bg-cyan-50 text-cyan-600 border border-cyan-100'
-                  : badge.toLowerCase() === 'cache'
-                  ? 'bg-rose-50 text-rose-600 border border-rose-100'
-                  : badge.toLowerCase() === 'fast'
-                  ? 'bg-amber-50 text-amber-600 border border-amber-100'
-                  : badge.toLowerCase() === 'robust'
-                  ? 'bg-teal-50 text-teal-600 border border-teal-100'
-                  : badge.toLowerCase() === 'ubiquitous'
-                  ? 'bg-violet-50 text-violet-600 border border-violet-100'
-                  : 'bg-gray-50 text-gray-600 border border-gray-100'
-              }`}
-            >
+            <span className={`text-[11px] font-bold px-3 py-1.5 rounded-full border uppercase tracking-wider ${getBadgeStyles(badge)}`}>
               {badge}
             </span>
           )}
         </div>
 
-        <h3 className="text-xl font-bold text-gray-900 mb-2">
+        <h3 className="text-xl font-bold text-gray-900 mb-2.5 tracking-tight">
           {name}
         </h3>
 
-        <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed min-h-[40px]">
+        <p className="text-gray-500 text-sm mb-6 line-clamp-2 leading-relaxed min-h-[40px] font-medium">
           {description}
         </p>
       </div>
 
-      <div>
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-5 pt-4 border-t border-gray-50">
-          <span className="font-medium bg-gray-100 px-2.5 py-1 rounded-md text-gray-700">
+      <div className="mt-auto">
+        <div className="flex items-center justify-between text-xs mb-5 pt-5 border-t border-gray-100/80">
+          <span className="font-semibold bg-gray-100/80 px-3 py-1.5 rounded-md text-gray-600 border border-gray-200/50">
             {category}
           </span>
-
-          <span className="font-medium text-gray-600">
+          <span className="font-medium text-gray-500 flex items-center gap-1">
             {difficulty}
           </span>
-
           {rating && (
-            <span className="flex items-center gap-1 font-semibold text-amber-500">
+            <span className="flex items-center gap-1.5 font-bold text-amber-500 bg-amber-50 px-2 py-1 rounded-md">
               ⭐ {rating}
             </span>
           )}
@@ -158,15 +139,15 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
         <button
           onClick={() => onAdd && onAdd(tech)}
           disabled={isAdded}
-          className={`w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all shadow-sm flex items-center justify-center gap-2 ${
+          className={`w-full py-3 px-4 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
             isAdded
-              ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white cursor-not-allowed opacity-90 shadow-pink-200'
-              : 'bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-black hover:to-gray-900 active:scale-[0.98]'
+              ? 'bg-gradient-to-r from-orange-400 to-pink-500 text-white shadow-lg shadow-pink-200/50 cursor-default'
+              : 'bg-slate-900 text-white hover:bg-slate-800 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0'
           }`}
         >
           {isAdded ? (
             <>
-              <span>Added to Stack ✓</span>
+              <span>Added to Stack</span>
               <span className="animate-bounce">✨</span>
             </>
           ) : (
