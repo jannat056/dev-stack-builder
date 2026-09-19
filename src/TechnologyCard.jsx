@@ -58,7 +58,7 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
   const imageSrc = getImageSrc();
 
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-100 transition-all duration-300 flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center p-2 border border-gray-100 overflow-hidden shrink-0">
