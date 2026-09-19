@@ -30,8 +30,7 @@ const Banner = () => {
 
         {/* Right Image Area */}
         <div className="flex justify-center">
-          <img 
-            src={bannerSrc} 
+          <img src={bannerSrc}
             alt="Development Stack Illustration" 
             className="w-full max-w-md h-auto object-contain drop-shadow-xl"
             onLoad={() => console.log("Banner image loaded successfully!")}
