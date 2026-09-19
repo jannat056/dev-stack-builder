@@ -1,6 +1,12 @@
 import React from 'react';
 
 const YourStack = ({ stack, onRemove, onRemoveAll }) => {
+  const getImageSrc = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) return img;
+    return `${import.meta.env.BASE_URL}${img}`;
+  };
+
   return (
     <div className="bg-base-200 p-6 rounded-2xl shadow-sm border border-base-300">
       <div className="flex justify-between items-center mb-4">
@@ -22,7 +28,11 @@ const YourStack = ({ stack, onRemove, onRemoveAll }) => {
                 className="flex items-center justify-between bg-base-100 p-3 rounded-xl shadow-sm border border-gray-100"
               >
                 <div className="flex items-center gap-3">
-                  <img src={item.image} alt={item.name} className="w-10 h-10 object-contain" />
+                  <img 
+                    src={getImageSrc(item.image)} 
+                    alt={item.name} 
+                    className="w-10 h-10 object-contain" 
+                  />
                   <div>
                     <h4 className="font-semibold text-sm">{item.name}</h4>
                     <span className="text-xs text-gray-400 uppercase">{item.category}</span>

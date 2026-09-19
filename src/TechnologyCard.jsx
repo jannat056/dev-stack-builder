@@ -43,14 +43,17 @@ const TechnologyCard = ({ tech, onAdd, isAdded }) => {
       : tech?.badge || tech?.tag || '';
 
   const getImageSrc = () => {
-    if (tech?.image) return tech.image;
+    if (tech?.image) {
+      if (tech.image.startsWith('http')) return tech.image;
+      return `${import.meta.env.BASE_URL}${tech.image}`;
+    }
     if (tech?.icon) return tech.icon;
     if (tech?.logo) return tech.logo;
 
     const formattedName = name.toLowerCase().replace(/[\s.]+/g, '');
 
-    if (formattedName.includes('next')) return '/nextjs.png';
-    if (formattedName.includes('svelte')) return '/svelte.png';
+    if (formattedName.includes('next')) return `${import.meta.env.BASE_URL}nextjs.png`;
+    if (formattedName.includes('svelte')) return `${import.meta.env.BASE_URL}svelte.png`;
 
     return '';
   };
