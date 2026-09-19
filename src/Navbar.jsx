@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Resolves the logo asset path reliably across local and production environments
-  const logoSrc = `${import.meta.env.BASE_URL}logo-text.png`;
+  // Correct path for assets inside public/assets/ folder
+  const logoSrc = `${import.meta.env.BASE_URL}assets/logo-text.png`;
 
   return (
     <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-gray-100 shadow-sm">
@@ -16,20 +16,8 @@ const Navbar = () => {
             <img 
               src={logoSrc} 
               alt="Dev Stack Logo" 
-              className="w-10 h-10 object-contain rounded-xl shadow-md"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                if (e.target.nextSibling) {
-                  e.target.nextSibling.style.display = 'flex';
-                }
-              }}
+              className="h-8 md:h-10 w-auto object-contain"
             />
-            {/* Fallback Badge if image path fails */}
-            <div className="hidden items-center gap-2">
-              <span className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold p-2 rounded-xl text-lg shadow-md">DS</span>
-              <span className="text-xl font-bold tracking-tight text-gray-900">Dev Stack</span>
-            </div>
-            <span className="text-xl font-bold tracking-tight text-gray-900">Dev Stack</span>
           </div>
 
           {/* Desktop Navigation Links */}
