@@ -22,7 +22,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-10">
-            <a href="#home" className="text-gray-900 font-medium transition-colors hover:text-black">Home</a>
+            <a 
+              href="#home" 
+              className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-semibold transition-opacity hover:opacity-80"
+            >
+              Home
+            </a>
             <a href="#technologies" className="text-gray-600 hover:text-black font-medium transition-colors">Technologies</a>
             <a href="#projects" className="text-gray-600 hover:text-black font-medium transition-colors">Projects</a>
             <a href="#about" className="text-gray-600 hover:text-black font-medium transition-colors">About</a>
@@ -60,7 +65,12 @@ const Navbar = () => {
       {/* Mobile Navigation Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 px-6 pt-4 pb-6 space-y-4 shadow-lg">
-          <a href="#home" className="block text-gray-900 font-medium py-1">Home</a>
+          <a 
+            href="#home" 
+            className="block bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent font-semibold py-1"
+          >
+            Home
+          </a>
           <a href="#technologies" className="block text-gray-700 font-medium py-1">Technologies</a>
           <a href="#projects" className="block text-gray-700 font-medium py-1">Projects</a>
           <a href="#about" className="block text-gray-700 font-medium py-1">About</a>
